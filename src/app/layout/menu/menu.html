@@ -1,1 +1,85 @@
-<p>menu works!</p>
+<aside id="sidebar">
+    <div class="menu-btn" id="menu-btn">
+        <i class="pi pi-angle-left"></i>
+    </div>
+
+    <header>
+        <span>P</span>ossr
+    </header>
+
+    <nav>
+        <ul class="menu">
+            <li class="menu-item menu-item-static active">
+                <a [routerLink]="['/home']" class="menu-link">
+                    <i class="fa-regular fa-house"></i>
+                    <span>Home</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-dropdown">
+                <a [routerLink]="['/admin']" class="menu-link">
+                    <i class="fa-solid fa-users-gear"></i>
+                    <span>Admin</span>
+                    <i class="pi pi-angle-down"></i>
+                </a>
+                <ul class="sub-menu">
+                    <li>
+                        <a [routerLink]="['/admin/companies']" class="sub-menu-link">Companies</a>
+                    </li>
+                    <li>
+                        <a [routerLink]="['/admin/employees']" class="sub-menu-link">Employees</a>
+                    </li>
+                    <li>
+                        <a [routerLink]="['/admin/genres']" class="sub-menu-link">Genres</a>
+                    </li>
+                    <li>
+                        <a [routerLink]="['/admin/users']" class="sub-menu-link">Users</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="menu-item menu-item-static">
+                <a [routerLink]="['/dashboard']" class="menu-link">
+                    <i class="fa-solid fa-chart-column"></i>
+                    <span>Dashboard</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-static">
+                <a [routerLink]="['/photo-report']" class="menu-link">
+                    <i class="fa-solid fa-images"></i>
+                    <span>Photo Report</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-dropdown">
+                <a [routerLink]="['/supervisor']" class="menu-link">
+                    <i class="fa-solid fa-users-viewfinder"></i>
+                    <span>Supervisors</span>
+                    <i class="pi pi-angle-down"></i>
+                </a>
+                <ul class="sub-menu">
+                    <li>
+                        <a [routerLink]="['/supervisors/routes']" class="sub-menu-link">Routes</a>
+                    </li>
+                    <li>
+                        <a [routerLink]="['/supervisors/reports']" class="sub-menu-link">Reports</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+
+    <footer>
+        <ul class="menu">
+            <li class="menu-item menu-item-static">
+                <a [routerLink]="['/profile']" class="menu-link">
+                    <i class="fa-solid fa-clipboard-user"></i>
+                    <span>My Profile</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-static">
+                <a [routerLink]="['/logout']" class="menu-link">
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                    <span>Logout</span>
+                </a>
+            </li>
+        </ul>
+    </footer>
+</aside>
