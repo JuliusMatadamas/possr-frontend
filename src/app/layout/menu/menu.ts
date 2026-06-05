@@ -57,6 +57,33 @@ export class Menu implements AfterViewInit, OnDestroy {
             });
         });
 
+        const allMenuItems = this.elementRef.nativeElement.querySelectorAll<HTMLElement>('.menu-item');
+
+        allMenuItems.forEach((item) => {
+            const mouseEnterListener = (): void => {
+                const sidebarEl = this.elementRef.nativeElement.querySelector<HTMLElement>('#sidebar');
+                if (!sidebarEl || !sidebarEl.classList.contains('minimize')) {
+                    return;
+                }
+
+                const openDropdown = this.elementRef.nativeElement.querySelector<HTMLElement>('.menu-item-dropdown.sub-menu-toggle');
+
+                if (openDropdown && openDropdown !== item) {
+                    const openSubMenu = openDropdown.querySelector<HTMLElement>('.sub-menu');
+                    if (openSubMenu) {
+                        openDropdown.classList.remove('sub-menu-toggle');
+                        openSubMenu.style.height = '0';
+                        openSubMenu.style.padding = '0';
+                    }
+                }
+            };
+
+            item.addEventListener('mouseenter', mouseEnterListener);
+            this.removeListeners.push(() => {
+                item.removeEventListener('mouseenter', mouseEnterListener);
+            });
+        });
+
         const sidebar = this.elementRef.nativeElement.querySelector<HTMLElement>('#sidebar');
         const menuBtn = this.elementRef.nativeElement.querySelector<HTMLElement>('#menu-btn');
 
