@@ -145,6 +145,10 @@ footer {
     transition: transform 0.3s ease;
 }
 
+aside.minimize .menu-link i:last-child {
+    display: none;
+}
+
 .menu-item.sub-menu-toggle .menu-link i:last-child {
     transform: rotate(180deg);
 }
@@ -188,6 +192,7 @@ aside.minimize .menu-item.sub-menu-toggle span {
 
 .sub-menu {
     height: 0;
+    overflow: hidden;
     transition: all 0.3s ease;
 }
 
@@ -196,11 +201,17 @@ aside.minimize .sub-menu {
     border-radius: 0.2rem;
     left: 4.2rem;
     position: absolute;
+    top: 3.25rem;
 }
 
-aside.minimize .menu-item.sub-menu-toggle .sub-menu {
-    margin-top: 1.15rem;
+aside.minimize .sub-menu::before {
+    width: 0;
 }
+
+aside.minimize .sub-menu a {
+    margin: 0 0.5rem;
+}
+
 
 .sub-menu .sub-menu-link {
     border-radius: 0.3rem;
