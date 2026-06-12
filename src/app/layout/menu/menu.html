@@ -1,1 +1,115 @@
-<p>menu works!</p>
+<aside>
+    <div>
+        <i class="fa-solid fa-angle-left"></i>
+    </div>
+
+    <header>
+        <h1>Poss</h1>
+    </header>
+
+    <nav>
+        <ul>
+            <li>
+                <a href="#">
+                    <i class="fas fa-home"></i>
+                    <span>Home</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="fas fa-chart-bar"></i>
+                    <span>Dashboard</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="fa-solid fa-users-gear"></i>
+                    <span>Admin</span>
+                    <i class="fa-solid fa-angle-down"></i>
+                </a>
+
+                <ul>
+                    <li>
+                        <a href="#">
+                            <span>Employees</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a [routerLink]="['/admin/genres']">
+                            <span>Genres</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <span>Companies</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <span>Positions</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <span>Users</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="fa-regular fa-file"></i>
+                    <span>Reports</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="fa-solid fa-user-shield"></i>
+                    <span>Supervisors</span>
+                    <i class="fa-solid fa-angle-down"></i>
+                </a>
+
+                <ul>
+                    <li>
+                        <a href="#">
+                            <span>Efficiency</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <span>Report</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <span>Routes</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="fa-solid fa-images"></i>
+                    <span>Photos</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <footer>
+        <ul>
+            <li>
+                <a href="#">
+                    <i class="fa-regular fa-circle-user"></i>
+                    <span>Profile</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                    <span>Logout</span>
+                </a>
+            </li>
+        </ul>
+    </footer>
+</aside>

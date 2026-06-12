@@ -9,4 +9,10 @@ import { Menu } from './menu/menu';
     templateUrl: './layout.html',
     styleUrl: './layout.scss',
 })
-export class Layout {}
+export class Layout {
+    isMenuMinimized = false;
+
+    onMenuToggled(minimized: boolean): void {
+        this.isMenuMinimized = minimized;
+    }
+}
