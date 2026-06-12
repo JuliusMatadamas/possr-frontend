@@ -1,2 +1,4 @@
-<app-menu></app-menu>
-<router-outlet></router-outlet>
+<app-menu (toggled)="onMenuToggled($event)"></app-menu>
+<main [class.expanded]="isMenuMinimized">
+    <router-outlet></router-outlet>
+</main>

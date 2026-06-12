@@ -2,7 +2,9 @@ import {
     AfterViewInit,
     Component,
     ElementRef,
+    EventEmitter,
     OnDestroy,
+    Output,
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
@@ -16,6 +18,8 @@ import { DatePickerModule } from 'primeng/datepicker';
     styleUrl: './menu.scss',
 })
 export class Menu implements AfterViewInit, OnDestroy {
+    @Output() toggled = new EventEmitter<boolean>();
+
     private readonly removeListeners: (() => void)[] = [];
 
     constructor(private readonly elementRef: ElementRef<HTMLElement>) {}
@@ -30,7 +34,8 @@ export class Menu implements AfterViewInit, OnDestroy {
 
         if (btnMenu && aside) {
             const toggleMenuListener = (): void => {
-                aside.classList.toggle('minimized');
+                const isMinimized = aside.classList.toggle('minimized');
+                this.toggled.emit(isMinimized);
             };
 
             btnMenu.addEventListener(
