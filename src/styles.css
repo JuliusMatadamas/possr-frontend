@@ -81,3 +81,8 @@ h6 {
     font-size: 1.1rem;
 }
 
+app-layout {
+    display: block;
+    width: 100vw;
+    max-width: 100vw;
+}

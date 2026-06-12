@@ -1,3 +1,40 @@
-<p>genre works!</p>
+<p-card header="Genres Module" class="full-width-card">
+    <p-panel header="Add Genre" [toggleable]="true" [collapsed]="false">
+        <form [formGroup]="genreForm" class="grid">
+            <div class="sm:col-12 md:col-6 lg:col-6 xl:col-6">
+                <label for="genreName">Name:</label>
+                <input id="genreName" pInputText formControlName="genreName" />
+            </div>
 
-<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed, consequuntur ullam veritatis voluptatem ratione labore repe ipsum atque sit delectus quo quam eius? Molestiae omnis consequatur officia nam beatae at.</p>
+            <div class="sm:col-12 md:col-6 lg:col-6 xl:col-6">
+                <label for="genreShortname">Shortname:</label>
+                <input id="genreShortname" pInputText formControlName="genreShortname" />
+            </div>
+        </form>
+    </p-panel>
+
+    <p-table [value]="genres" [tableStyle]="{ 'width': '100%' }">
+        <ng-template #header>
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Name</th>
+                <th scope="col">Short Name</th>
+                <th scope="col">Edit</th>
+                <th scope="col">Delete</th>
+            </tr>
+        </ng-template>
+        <ng-template #body let-genre>
+            <tr>
+                <td>{{ genre.genreIg }}</td>
+                <td>{{ genre.genreName }}</td>
+                <td>{{ genre.genreShortname }}</td>
+                <td>
+                    <p-button icon="pi pi-pencil" aria-label="Edit" />
+                </td>
+                <td>
+                    <p-button icon="pi pi-trash" aria-label="Delete" />
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+</p-card>
