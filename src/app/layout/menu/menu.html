@@ -1,82 +1,112 @@
-<aside id="sidebar">
-    <div class="menu-btn" id="menu-btn">
-        <i class="pi pi-angle-left"></i>
+<aside>
+    <div>
+        <i class="fa-solid fa-angle-left"></i>
     </div>
 
     <header>
-        <span>P</span>ossr
+        <h1>Poss</h1>
     </header>
 
     <nav>
-        <ul class="menu">
-            <li class="menu-item menu-item-static active">
-                <a [routerLink]="['/home']" class="menu-link">
-                    <i class="fa-regular fa-house"></i>
+        <ul>
+            <li>
+                <a href="#">
+                    <i class="fas fa-home"></i>
                     <span>Home</span>
                 </a>
             </li>
-            <li class="menu-item menu-item-dropdown">
-                <a class="menu-link">
-                    <i class="fa-solid fa-users-gear"></i>
-                    <span>Admin</span>
-                    <i class="pi pi-angle-down"></i>
-                </a>
-                <ul class="sub-menu">
-                    <li>
-                        <a [routerLink]="['/admin/companies']" class="sub-menu-link">Companies</a>
-                    </li>
-                    <li>
-                        <a [routerLink]="['/admin/employees']" class="sub-menu-link">Employees</a>
-                    </li>
-                    <li>
-                        <a [routerLink]="['/admin/genres']" class="sub-menu-link">Genres</a>
-                    </li>
-                    <li>
-                        <a [routerLink]="['/admin/users']" class="sub-menu-link">Users</a>
-                    </li>
-                </ul>
-            </li>
-            <li class="menu-item menu-item-static">
-                <a [routerLink]="['/dashboard']" class="menu-link">
-                    <i class="fa-solid fa-chart-column"></i>
+            <li>
+                <a href="#">
+                    <i class="fas fa-chart-bar"></i>
                     <span>Dashboard</span>
                 </a>
             </li>
-            <li class="menu-item menu-item-static">
-                <a [routerLink]="['/photo-report']" class="menu-link">
-                    <i class="fa-solid fa-images"></i>
-                    <span>Photo Report</span>
+            <li>
+                <a href="#">
+                    <i class="fa-solid fa-users-gear"></i>
+                    <span>Admin</span>
+                    <i class="fa-solid fa-angle-down"></i>
                 </a>
-            </li>
-            <li class="menu-item menu-item-dropdown">
-                <a class="menu-link">
-                    <i class="fa-solid fa-users-viewfinder"></i>
-                    <span>Supervisors</span>
-                    <i class="pi pi-angle-down"></i>
-                </a>
-                <ul class="sub-menu">
+
+                <ul>
                     <li>
-                        <a [routerLink]="['/supervisors/routes']" class="sub-menu-link">Routes</a>
+                        <a href="#">
+                            <span>Employees</span>
+                        </a>
                     </li>
                     <li>
-                        <a [routerLink]="['/supervisors/reports']" class="sub-menu-link">Reports</a>
+                        <a [routerLink]="['/admin/genres']">
+                            <span>Genres</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <span>Companies</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <span>Positions</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <span>Users</span>
+                        </a>
                     </li>
                 </ul>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="fa-regular fa-file"></i>
+                    <span>Reports</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="fa-solid fa-user-shield"></i>
+                    <span>Supervisors</span>
+                    <i class="fa-solid fa-angle-down"></i>
+                </a>
+
+                <ul>
+                    <li>
+                        <a href="#">
+                            <span>Efficiency</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <span>Report</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <span>Routes</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="fa-solid fa-images"></i>
+                    <span>Photos</span>
+                </a>
             </li>
         </ul>
     </nav>
 
     <footer>
-        <ul class="menu">
-            <li class="menu-item menu-item-static">
-                <a [routerLink]="['/profile']" class="menu-link">
-                    <i class="fa-solid fa-clipboard-user"></i>
-                    <span>My Profile</span>
+        <ul>
+            <li>
+                <a href="#">
+                    <i class="fa-regular fa-circle-user"></i>
+                    <span>Profile</span>
                 </a>
             </li>
-            <li class="menu-item menu-item-static">
-                <a [routerLink]="['/logout']" class="menu-link">
-                    <i class="fa-solid fa-right-from-bracket"></i>
+            <li>
+                <a href="#">
+                    <i class="fa-solid fa-arrow-right-from-bracket"></i>
                     <span>Logout</span>
                 </a>
             </li>

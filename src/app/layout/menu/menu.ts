@@ -21,82 +21,70 @@ export class Menu implements AfterViewInit, OnDestroy {
     constructor(private readonly elementRef: ElementRef<HTMLElement>) {}
 
     ngAfterViewInit(): void {
-        const menusItemsDropDown = this.elementRef.nativeElement
-            .querySelectorAll<HTMLElement>('.menu-item-dropdown');
+        const btnMenu = this.elementRef.nativeElement.querySelector<HTMLElement>(
+            'aside > div'
+        );
+        const aside = this.elementRef.nativeElement.querySelector<HTMLElement>(
+            'aside'
+        );
 
-        menusItemsDropDown.forEach((menuItem) => {
-            const listener = (): void => {
-                const subMenu = menuItem.querySelector<HTMLElement>('.sub-menu');
-                const isActive = menuItem.classList.toggle('sub-menu-toggle');
-
-                if (subMenu) {
-                    if (isActive) {
-                        subMenu.style.height = `${subMenu.scrollHeight + 6}px`;
-                        subMenu.style.padding = '0.2rem 0';
-                    } else {
-                        subMenu.style.height = '0';
-                        subMenu.style.padding = '0';
-                    }
-                }
-
-                menusItemsDropDown.forEach((item) => {
-                    if (item !== menuItem) {
-                        const otherSubmenu = item.querySelector<HTMLElement>('.sub-menu');
-                        if (otherSubmenu) {
-                            item.classList.remove('sub-menu-toggle');
-                            otherSubmenu.style.height = '0';
-                            otherSubmenu.style.padding = '0';
-                        }
-                    }
-                });
+        if (btnMenu && aside) {
+            const toggleMenuListener = (): void => {
+                aside.classList.toggle('minimized');
             };
 
-            menuItem.addEventListener('click', listener);
+            btnMenu.addEventListener(
+                'click',
+                toggleMenuListener
+            );
             this.removeListeners.push(() => {
-                menuItem.removeEventListener('click', listener);
+                btnMenu.removeEventListener(
+                    'click',
+                    toggleMenuListener
+                );
             });
-        });
+        }
 
-        const allMenuItems = this.elementRef.nativeElement.querySelectorAll<HTMLElement>('.menu-item');
+        const toggleIcons = this.elementRef.nativeElement.querySelectorAll<HTMLElement>(
+            'aside > nav > ul > li > a > i:last-child'
+        );
 
-        allMenuItems.forEach((item) => {
-            const mouseEnterListener = (): void => {
-                const sidebarEl = this.elementRef.nativeElement.querySelector<HTMLElement>('#sidebar');
-                if (!sidebarEl || !sidebarEl.classList.contains('minimize')) {
+        toggleIcons.forEach((icon) => {
+            const toggleIconListener = (
+                event: MouseEvent
+            ): void => {
+                event.preventDefault();
+
+                const liElement = icon.closest('li');
+                if (!liElement) {
                     return;
                 }
 
-                const openDropdown = this.elementRef.nativeElement.querySelector<HTMLElement>('.menu-item-dropdown.sub-menu-toggle');
-
-                if (openDropdown && openDropdown !== item) {
-                    const openSubMenu = openDropdown.querySelector<HTMLElement>('.sub-menu');
-                    if (openSubMenu) {
-                        openDropdown.classList.remove('sub-menu-toggle');
-                        openSubMenu.style.height = '0';
-                        openSubMenu.style.padding = '0';
-                    }
+                const submenu = liElement.querySelector<HTMLElement>(
+                    ':scope > ul'
+                );
+                if (!submenu) {
+                    return;
                 }
+
+                const isOpen = submenu.classList.toggle('open');
+                icon.style.setProperty(
+                    'rotate',
+                    isOpen ? '180deg' : '0deg'
+                );
             };
 
-            item.addEventListener('mouseenter', mouseEnterListener);
+            icon.addEventListener(
+                'click',
+                toggleIconListener as EventListener
+            );
             this.removeListeners.push(() => {
-                item.removeEventListener('mouseenter', mouseEnterListener);
+                icon.removeEventListener(
+                    'click',
+                    toggleIconListener as EventListener
+                );
             });
         });
-
-        const sidebar = this.elementRef.nativeElement.querySelector<HTMLElement>('#sidebar');
-        const menuBtn = this.elementRef.nativeElement.querySelector<HTMLElement>('#menu-btn');
-
-        if (sidebar && menuBtn) {
-            const toggleListener = (): void => {
-                sidebar.classList.toggle('minimize');
-            };
-
-            menuBtn.addEventListener('click', toggleListener);
-            this.removeListeners.push(() => {
-                menuBtn.removeEventListener('click', toggleListener);
-            });
-        }
     }
 
     ngOnDestroy(): void {
