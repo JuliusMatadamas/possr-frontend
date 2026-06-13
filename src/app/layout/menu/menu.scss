@@ -7,6 +7,7 @@ aside {
     position: fixed;
     transition: transform 0.3s ease;
     width: 240px;
+    z-index: 1000;
 }
 
 aside.minimized {

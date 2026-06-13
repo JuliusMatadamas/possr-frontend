@@ -21,10 +21,42 @@ export class Menu implements AfterViewInit, OnDestroy {
     @Output() toggled = new EventEmitter<boolean>();
 
     private readonly removeListeners: (() => void)[] = [];
+    private readonly BREAKPOINT = 576;
 
     constructor(private readonly elementRef: ElementRef<HTMLElement>) {}
 
+    private checkScreenSize(): void {
+        const aside = this.elementRef.nativeElement.querySelector<HTMLElement>('aside');
+        if (!aside) {
+            return;
+        }
+
+        if (window.innerWidth < this.BREAKPOINT) {
+            if (!aside.classList.contains('minimized')) {
+                aside.classList.add('minimized');
+                this.toggled.emit(true);
+            }
+            return;
+        }
+
+        if (aside.classList.contains('minimized')) {
+            aside.classList.remove('minimized');
+            this.toggled.emit(false);
+        }
+    }
+
     ngAfterViewInit(): void {
+        this.checkScreenSize();
+
+        const resizeListener = (): void => {
+            this.checkScreenSize();
+        };
+
+        window.addEventListener('resize', resizeListener);
+        this.removeListeners.push(() => {
+            window.removeEventListener('resize', resizeListener);
+        });
+
         const btnMenu = this.elementRef.nativeElement.querySelector<HTMLElement>(
             'aside > div'
         );

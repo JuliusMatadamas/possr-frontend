@@ -1,14 +1,21 @@
 <p-card header="Genres Module" class="full-width-card">
     <p-panel header="Add Genre" [toggleable]="true" [collapsed]="false">
-        <form [formGroup]="genreForm" class="grid">
-            <div class="sm:col-12 md:col-6 lg:col-6 xl:col-6">
-                <label for="genreName">Name:</label>
-                <input id="genreName" pInputText formControlName="genreName" />
+        <form [formGroup]="genreForm" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="flex items-center gap-2">
+                <label for="genreName" class="w-[100px] flex justify-between shrink-0">Name <span>:</span></label>
+                <input id="genreName" pInputText pSize="small" formControlName="genreName" class="w-full" />
             </div>
 
-            <div class="sm:col-12 md:col-6 lg:col-6 xl:col-6">
-                <label for="genreShortname">Shortname:</label>
-                <input id="genreShortname" pInputText formControlName="genreShortname" />
+            <div class="flex items-center gap-2">
+                <label for="genreName" class="w-[100px] flex justify-between shrink-0">Shortname <span>:</span></label>
+                <input id="genreShortname" pInputText pSize="small" formControlName="genreShortname" class="w-[40px]" />
+            </div>
+
+            <div class="flex gap-4">
+                <p-button label="Clear" icon="pi pi-refresh" severity="warn" size="small" class="w-[100px] shrink-0" (click)="clearForm()"
+                    (keydown)="clearForm()" />
+                <p-button label="Submit" icon="pi pi-plus" severity="info" size="small" class="w-[100px] shrink-0" (click)="addGenre()"
+                    (keydown)="addGenre()" />
             </div>
         </form>
     </p-panel>

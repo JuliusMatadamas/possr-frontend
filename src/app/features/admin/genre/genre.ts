@@ -23,7 +23,7 @@ export class Genre implements OnInit {
         private readonly genreService: GenreService
     ) {
         this.genreForm = this.fb.group({
-            genreShortname: ['', [Validators.required, Validators.maxLength(1)]],
+            genreShortname: ['M', [Validators.required, Validators.maxLength(1)]],
             genreName: ['', [Validators.required, Validators.maxLength(20)]],
         });
     }
@@ -39,5 +39,14 @@ export class Genre implements OnInit {
                 console.error('Error al cargar genres:', err);
             },
         });
+    }
+
+    addGenre(): void {
+        console.log('Adding genre');
+    }
+
+    clearForm(): void {
+        console.log('Clearing form');
+        this.genreForm.reset();
     }
 }
