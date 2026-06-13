@@ -8,3 +8,8 @@ export interface IGenre {
     deletedAt: DateStringOrNull;
     updatedAt: DateStringOrNull;
 }
+
+export interface IGenreCreateRequest {
+    shortName: string;
+    name: string;
+}

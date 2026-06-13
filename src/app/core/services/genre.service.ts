@@ -2,7 +2,7 @@ import { HttpClient, HttpResponse } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { catchError, map, Observable, throwError } from "rxjs";
 import { ApiResponse } from "../interfaces/api-response.interface";
-import { IGenre } from "../interfaces/genre.interface";
+import { IGenre, IGenreCreateRequest } from "../interfaces/genre.interface";
 
 @Injectable({
 	providedIn: "root",
@@ -35,6 +35,36 @@ export class GenreService {
 
 			catchError((error) => {
 				console.error("Error en el servicio de generos:", error);
+				const userMessage = error instanceof Error ? error.message : "Fallo de conexión o red.";
+				return throwError(() => new Error(userMessage));
+			})
+		);
+	}
+
+	createGenre(genreShortname: string, genreName: string): Observable<void> {
+		const url = `http://localhost:8080/ps/physical-storage-management/possr/api/genres/v1/create`;
+		const request: IGenreCreateRequest = {
+			shortName: genreShortname,
+			name: genreName
+		};
+
+		return this.http.post<ApiResponse<null>>(url, request, this.HTTP_OPTIONS_JSON_RESPONSE).pipe(
+			map((httpResponse: HttpResponse<ApiResponse<null>>) => {
+				if (!httpResponse.body) {
+					console.warn(`API respondió ${httpResponse.status} sin contenido.`);
+					return;
+				}
+
+				const apiResponse = httpResponse.body;
+
+				if (apiResponse.meta.statusCode !== 201) {
+					const errorMessage = apiResponse.meta.status || apiResponse.meta.message || "Error interno de la API.";
+					throw new Error(errorMessage);
+				}
+			}),
+
+			catchError((error) => {
+				console.error("Error al crear género:", error);
 				const userMessage = error instanceof Error ? error.message : "Fallo de conexión o red.";
 				return throwError(() => new Error(userMessage));
 			})
