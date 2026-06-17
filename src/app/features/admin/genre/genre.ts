@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CardModule } from 'primeng/card';
 import { TableModule } from 'primeng/table';
@@ -24,7 +24,8 @@ export class Genre implements OnInit {
     constructor(
         private readonly fb: FormBuilder,
         private readonly genreService: GenreService,
-        private readonly messageService: MessageService
+        private readonly messageService: MessageService,
+        private readonly cdr: ChangeDetectorRef
     ) {
         this.genreForm = this.fb.group({
             genreShortname: ['', [Validators.required, Validators.maxLength(1)]],
@@ -37,6 +38,7 @@ export class Genre implements OnInit {
             next: (data) => {
                 if (data) {
                     this.genres = data;
+                    this.cdr.detectChanges();
                 }
             },
             error: (err) => {

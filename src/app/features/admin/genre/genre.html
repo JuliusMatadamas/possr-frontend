@@ -75,11 +75,23 @@
                 <th scope="col">Delete</th>
             </tr>
         </ng-template>
+        <ng-template #emptymessage>
+            <tr>
+                <td colspan="5" class="p-4">
+                    <div class="flex items-center justify-center gap-2">
+                        <span>
+                            <i class="fa-solid fa-triangle-exclamation"></i>
+                        </span>
+                        <span>No data found</span>
+                    </div>
+                </td>
+            </tr>
+        </ng-template>
         <ng-template #body let-genre>
             <tr>
-                <td>{{ genre.genreIg }}</td>
-                <td>{{ genre.genreName }}</td>
-                <td>{{ genre.genreShortname }}</td>
+                <td>{{ genre.genreId }}</td>
+                <td>{{ genre.name }}</td>
+                <td>{{ genre.shortName }}</td>
                 <td>
                     <p-button icon="pi pi-pencil" aria-label="Edit" />
                 </td>
